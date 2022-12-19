@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 14:23:07 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/18 12:55:58 by thloyan          ###   ########.fr       */
+/*   Created: 2022/12/17 14:29:42 by thloyan           #+#    #+#             */
+/*   Updated: 2022/12/19 16:35:26 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-void	push_swap(void)
-{
-	char	*str;
+# include "utils.h"
 
-	str = ft_strdup("hello world !");
-	ft_strlen(str);
-	free(str);
-	return ;
-}
+void	push_swap(void);
+
+#endif

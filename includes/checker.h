@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 14:29:42 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/17 14:36:51 by thloyan          ###   ########.fr       */
+/*   Created: 2022/12/17 16:04:44 by thloyan           #+#    #+#             */
+/*   Updated: 2022/12/19 17:13:15 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H
 
-# include "libft.h"
+# include "utils.h"
 
-void	push_swap(void);
+void	checker(void);
 
 #endif

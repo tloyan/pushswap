@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   process_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 14:23:07 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/18 12:55:58 by thloyan          ###   ########.fr       */
+/*   Created: 2022/12/19 11:26:13 by thloyan           #+#    #+#             */
+/*   Updated: 2022/12/19 16:13:53 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "push_swap.h"
 
-void	push_swap(void)
+void	process_exit(t_list *lst)
 {
-	char	*str;
-
-	str = ft_strdup("hello world !");
-	ft_strlen(str);
-	free(str);
-	return ;
+	ft_lstclear(&lst, &free);
+	ft_putstr_fd("Error\n", 1);
+	exit(-1);
 }
