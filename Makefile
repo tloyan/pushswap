@@ -6,7 +6,7 @@
 #    By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:38:39 by thloyan           #+#    #+#              #
-#    Updated: 2022/12/19 17:23:28 by thloyan          ###   ########.fr        #
+#    Updated: 2022/12/19 19:37:09 by thloyan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,13 @@ UTILS = utils
 INLCUDES = includes
 
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 OBJDIR = objs
 
 OBJDIR_UTILS = $(OBJDIR)/utils
 PATH_UTILS = srcs/utils
-SRCS_UTILS = process_args.c process_exit.c display_lst.c
+SRCS_UTILS = 	process_args.c process_exit.c display_lst.c ft_swap.c ft_push.c \
+				ft_rotate.c ft_rrotate.c
 OBJS_UTILS = $(addprefix $(OBJDIR_UTILS)/, $(SRCS_UTILS:.c=.o))
 
 OBJDIR_PUSHSWAP = $(OBJDIR)/push_swap
@@ -107,7 +108,7 @@ re_checker: fclean_checker $(NAME_CHECKER)
 #                                    UTILS                                     #
 ################################################################################
 
-utils: $(LIBFT) $(OBJDIR) $(OBJDIR_UTILS) $(OBJS_UTILS)
+$(UTILS): $(LIBFT) $(OBJDIR) $(OBJDIR_UTILS) $(OBJS_UTILS)
 
 $(OBJDIR_UTILS):
 	mkdir $(OBJDIR_UTILS)
