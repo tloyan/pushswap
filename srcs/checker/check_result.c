@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:05:16 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/20 16:50:06 by thloyan          ###   ########.fr       */
+/*   Updated: 2022/12/20 19:53:18 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,20 @@ void	check_result(t_list **stack_a, t_list **stack_b)
 	int		max;
 	int		valid;
 	int		stack_b_len;
+	t_list	*lst;
 
 	max = 0;
 	valid = 1;
 	stack_b_len = ft_lstsize(*stack_b);
 	if (stack_b_len != 0)
 		valid = 0;
-	while (*stack_a && valid)
+	lst = *stack_a;
+	while (lst && valid)
 	{
-		if (((t_data *)(*stack_a)->content)->number < max)
+		if (((t_data *)lst->content)->number < max)
 			valid = 0;
-		max = ((t_data *)(*stack_a)->content)->number;
-		*stack_a = (*stack_a)->next;
+		max = ((t_data *)lst->content)->number;
+		lst = lst->next;
 	}
 	ft_lstclear(&*stack_a, &free);
 	ft_lstclear(&*stack_b, &free);
