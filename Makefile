@@ -6,7 +6,7 @@
 #    By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:38:39 by thloyan           #+#    #+#              #
-#    Updated: 2022/12/20 14:58:10 by thloyan          ###   ########.fr        #
+#    Updated: 2022/12/20 16:20:55 by thloyan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ OBJDIR = objs
 OBJDIR_UTILS = $(OBJDIR)/utils
 PATH_UTILS = srcs/utils
 SRCS_UTILS = 	process_args.c process_exit.c display_lst.c ft_swap.c ft_push.c \
-				ft_rotate.c ft_rrotate.c
+				ft_rotate.c ft_rrotate.c exec_instruction.c
 OBJS_UTILS = $(addprefix $(OBJDIR_UTILS)/, $(SRCS_UTILS:.c=.o))
 
 OBJDIR_PUSHSWAP = $(OBJDIR)/push_swap
@@ -55,11 +55,13 @@ OBJS_CHECKER = $(addprefix $(OBJDIR_CHECKER)/, $(SRCS_CHECKER:.c=.o))
 #                                                                              #
 ################################################################################
 
+all: $(NAME)
+
+bonus: $(NAME_CHECKER)
+
 ################################################################################
 #                                 PUSH_SWAP                                    #
 ################################################################################
-
-all: $(NAME)
 
 $(NAME): $(LIBFT) $(UTILS) $(OBJDIR) $(OBJDIR_PUSHSWAP) $(OBJS_PUSHSWAP)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS_PUSHSWAP) $(OBJS_UTILS) -Llibft -lft

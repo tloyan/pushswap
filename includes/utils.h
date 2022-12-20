@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:33:52 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/19 19:43:22 by thloyan          ###   ########.fr       */
+/*   Updated: 2022/12/20 16:03:22 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_swap(t_list **lst);
 void	ft_push(t_list **lst_src, t_list **lst_dest);
 void	ft_rotate(t_list **lst);
 void	ft_rrotate(t_list **lst);
+void	exec_instruction(t_list **stack_a, t_list **stack_b, char *instruction);
 
 void	display_lst(t_list *lst);
 

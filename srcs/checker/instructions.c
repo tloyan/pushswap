@@ -6,11 +6,12 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:02:14 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/20 15:12:01 by thloyan          ###   ########.fr       */
+/*   Updated: 2022/12/20 16:06:37 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "utils.h"
 
 int	is_valid_instruction(char *instruction)
 {
@@ -46,4 +47,20 @@ int	get_instructions(t_list **instructions)
 			return (ft_lstclear(&*instructions, &free), -1);
 	}
 	return (0);
+}
+
+void	run_instructions(
+	t_list **stack_a,
+	t_list **stack_b,
+	t_list **instruction
+) {
+	t_list	*tmp;
+
+	while (*instruction)
+	{
+		tmp = (*instruction)->next;
+		exec_instruction(&*stack_a, &*stack_b, (*instruction)->content);
+		free(*instruction);
+		*instruction = tmp;
+	}
 }
