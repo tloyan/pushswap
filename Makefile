@@ -6,7 +6,7 @@
 #    By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:38:39 by thloyan           #+#    #+#              #
-#    Updated: 2022/12/19 19:37:09 by thloyan          ###   ########.fr        #
+#    Updated: 2022/12/20 14:58:10 by thloyan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ UTILS = utils
 INLCUDES = includes
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 OBJDIR = objs
 
 OBJDIR_UTILS = $(OBJDIR)/utils
@@ -45,7 +45,7 @@ OBJS_PUSHSWAP = $(addprefix $(OBJDIR_PUSHSWAP)/, $(SRCS_PUSHSWAP:.c=.o))
 
 OBJDIR_CHECKER = $(OBJDIR)/checker
 PATH_CHECKER = srcs/checker
-SRCS_CHECKER = main.c checker.c
+SRCS_CHECKER = main.c checker.c instructions.c
 OBJS_CHECKER = $(addprefix $(OBJDIR_CHECKER)/, $(SRCS_CHECKER:.c=.o))
 
 

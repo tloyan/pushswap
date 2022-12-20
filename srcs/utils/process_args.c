@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:53:30 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/19 16:18:59 by thloyan          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:54:08 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static t_list	*create_new_elem(char *str, t_list *lst)
 	if (nb_already_exist(data->number, lst))
 		return (free(data), NULL);
 	return (ft_lstnew((void *)data));
-
 }
 
 t_list	*process_args(int argc, char **argv)

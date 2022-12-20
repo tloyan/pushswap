@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:04:00 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/19 19:37:30 by thloyan          ###   ########.fr       */
+/*   Updated: 2022/12/20 15:00:34 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,16 @@
 
 int	main(int argc, char **argv)
 {
-	int		i;
 	t_list	*stack_a;
 	t_list	*stack_b;
+	t_list	*instructions;
 
-	i = 0;
 	stack_a = process_args(argc, argv);
 	stack_b = NULL;
-	display_lst(stack_a);
-	ft_putstr_fd("\n", 1);
-	// ft_push(&stack_a, &stack_b);
-	ft_rrotate(&stack_a);
-	display_lst(stack_a);
-	ft_putstr_fd("\n", 1);
-	// display_lst(stack_b);
+	instructions = NULL;
+	if (get_instructions(&instructions) == -1)
+		return (process_exit(stack_a), 0);
+	checker(&stack_a, &stack_b, &instructions);
 	ft_lstclear(&stack_a, &free);
 	return (0);
 }
