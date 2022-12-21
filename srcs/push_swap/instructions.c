@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 14:23:07 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/18 12:55:58 by thloyan          ###   ########.fr       */
+/*   Created: 2022/12/21 15:46:50 by thloyan           #+#    #+#             */
+/*   Updated: 2022/12/21 15:49:55 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "utils.h"
 
-void	push_swap(void)
+void	call_instruction(t_list **stack_a, t_list **stack_b, char *instruction)
 {
-	char	*str;
-
-	str = ft_strdup("hello world !");
-	ft_strlen(str);
-	free(str);
-	return ;
+	exec_instruction(&*stack_a, &*stack_b, instruction);
+	ft_putendl_fd(instruction, 1);
 }

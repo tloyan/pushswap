@@ -6,7 +6,7 @@
 #    By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:38:39 by thloyan           #+#    #+#              #
-#    Updated: 2022/12/20 16:44:37 by thloyan          ###   ########.fr        #
+#    Updated: 2022/12/21 15:55:09 by thloyan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@
 #                                                                              #
 ################################################################################
 
-LIBFT = libft
+LIBFT_PATH = libft
+LIBFT = $(LIBFT_PATH)/libft.a
 INLCUDES_LIBFT = libft/includes
 
 NAME_PUSHSWAP = push_swap
@@ -39,7 +40,7 @@ OBJS_UTILS = $(addprefix $(OBJDIR_UTILS)/, $(SRCS_UTILS:.c=.o))
 
 OBJDIR_PUSHSWAP = $(OBJDIR)/push_swap
 PATH_PUSHSWAP = srcs/push_swap
-SRCS_PUSHSWAP = main.c push_swap.c
+SRCS_PUSHSWAP = main.c push_swap.c algo_low.c instructions.c
 OBJS_PUSHSWAP = $(addprefix $(OBJDIR_PUSHSWAP)/, $(SRCS_PUSHSWAP:.c=.o))
 
 
@@ -132,21 +133,21 @@ re_utils: fclean_utils $(NAME_UTILS)
 ################################################################################
 
 $(LIBFT):
-	make -C $(LIBFT) all
+	make -C $(LIBFT_PATH) all
 
 clean_libft:
-	make -C $(LIBFT) clean
+	make -C $(LIBFT_PATH) clean
 
 fclean_libft:
-	make -C $(LIBFT) fclean
+	make -C $(LIBFT_PATH) fclean
 
 re_libft:
-	make -C $(LIBFT) re
+	make -C $(LIBFT_PATH) re
 
 .PHONY: all clean fclean re \
 		clean_checker fclean_checker re_checker \
 		clean_libft fclean_libft re_libft \
-		$(LIBFT) $(UTILS)
+		$(UTILS)
 
 ################################################################################
 #                                                                              #

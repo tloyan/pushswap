@@ -6,12 +6,13 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:05:16 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/20 19:53:18 by thloyan          ###   ########.fr       */
+/*   Updated: 2022/12/21 14:07:16 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils.h"
+#include <limits.h>
 
 void	check_result(t_list **stack_a, t_list **stack_b)
 {
@@ -20,7 +21,7 @@ void	check_result(t_list **stack_a, t_list **stack_b)
 	int		stack_b_len;
 	t_list	*lst;
 
-	max = 0;
+	max = INT_MIN;
 	valid = 1;
 	stack_b_len = ft_lstsize(*stack_b);
 	if (stack_b_len != 0)
