@@ -6,13 +6,12 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:29:05 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/21 19:35:55 by thloyan          ###   ########.fr       */
+/*   Updated: 2022/12/22 14:54:50 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
-#include <stdio.h>
 
 void	set_min_max(t_list *stack, int *min, int *max)
 {
@@ -44,7 +43,7 @@ void	algo_3(t_list **stack_a, t_list **stack_b)
 		call_instruction(&*stack_a, &*stack_b, "sa");
 }
 
-int	get_rcost_move(t_list *stack_a, int nb)
+int	get_rcost_move(t_list *stack_a, int nb, int *asc)
 {
 	int	len;
 	int	rcost;
@@ -57,7 +56,9 @@ int	get_rcost_move(t_list *stack_a, int nb)
 			rcost = rcost + 1;
 		stack_a = stack_a->next;
 	}
-	return (rcost - (len / 2));
+	if (rcost <= (len / 2))
+		return (*asc = 1, rcost);
+	return (*asc = 0, (len - rcost));
 }
 
 void	special_move(t_list **stack_a, t_list **stack_b)
@@ -67,13 +68,8 @@ void	special_move(t_list **stack_a, t_list **stack_b)
 	const char	*moves[3] = {"rra", "ra"};
 	int			move_i;
 
-	move_i = 0;
-	rcost = get_rcost_move(*stack_a, ((t_data *)(*stack_b)->content)->number);
-	if (rcost < 0)
-	{
-		rcost = rcost * -1;
-		move_i = 1;
-	}
+	rcost = get_rcost_move(*stack_a,
+			((t_data *)(*stack_b)->content)->number, &move_i);
 	i = -1;
 	while (++i < rcost)
 		call_instruction(&*stack_a, &*stack_b, (char *)moves[move_i]);

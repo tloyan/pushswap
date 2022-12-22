@@ -6,7 +6,7 @@
 #    By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:38:39 by thloyan           #+#    #+#              #
-#    Updated: 2022/12/21 15:55:09 by thloyan          ###   ########.fr        #
+#    Updated: 2022/12/21 20:01:08 by thloyan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ OBJS_UTILS = $(addprefix $(OBJDIR_UTILS)/, $(SRCS_UTILS:.c=.o))
 
 OBJDIR_PUSHSWAP = $(OBJDIR)/push_swap
 PATH_PUSHSWAP = srcs/push_swap
-SRCS_PUSHSWAP = main.c push_swap.c algo_low.c instructions.c
+SRCS_PUSHSWAP = main.c algo_low.c instructions.c
 OBJS_PUSHSWAP = $(addprefix $(OBJDIR_PUSHSWAP)/, $(SRCS_PUSHSWAP:.c=.o))
 
 
@@ -64,7 +64,7 @@ bonus: $(NAME_CHECKER)
 #                                 PUSH_SWAP                                    #
 ################################################################################
 
-$(NAME): $(LIBFT) $(UTILS) $(OBJDIR) $(OBJDIR_PUSHSWAP) $(OBJS_PUSHSWAP)
+$(NAME): $(LIBFT) $(OBJDIR) $(OBJDIR_UTILS) $(OBJS_UTILS) $(OBJDIR_PUSHSWAP) $(OBJS_PUSHSWAP)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS_PUSHSWAP) $(OBJS_UTILS) -Llibft -lft
 
 $(OBJDIR):
@@ -89,7 +89,7 @@ re: fclean all
 #                                  CHECKER                                     #
 ################################################################################
 
-$(NAME_CHECKER): $(LIBFT) $(UTILS) $(OBJDIR) $(OBJDIR_CHECKER) $(OBJS_CHECKER)
+$(NAME_CHECKER): $(LIBFT) $(OBJDIR) $(OBJDIR_UTILS) $(OBJS_UTILS) $(OBJDIR_CHECKER) $(OBJS_CHECKER)
 	$(CC) $(CFLAGS) -o $(NAME_CHECKER) $(OBJS_CHECKER) $(OBJS_UTILS) -Llibft -lft
 
 $(OBJDIR_CHECKER):
@@ -146,8 +146,7 @@ re_libft:
 
 .PHONY: all clean fclean re \
 		clean_checker fclean_checker re_checker \
-		clean_libft fclean_libft re_libft \
-		$(UTILS)
+		clean_libft fclean_libft re_libft
 
 ################################################################################
 #                                                                              #

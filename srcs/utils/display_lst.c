@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:01:44 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/20 15:18:21 by thloyan          ###   ########.fr       */
+/*   Updated: 2022/12/22 13:52:33 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	display_lst(t_list *lst)
 		ft_putstr_fd("\n", 1);
 		lst = lst->next;
 	}
+	ft_putstr_fd("\n", 1);
 }

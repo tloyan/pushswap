@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:20:57 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/21 19:36:15 by thloyan          ###   ########.fr       */
+/*   Updated: 2022/12/22 14:03:49 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,15 @@ int	main(int argc, char **argv)
 
 	stack_a = process_args(argc, argv);
 	stack_b = NULL;
+	// display_lst(stack_a);
 	len = ft_lstsize(stack_a);
 	if (len < 4)
 		algo_3(&stack_a, &stack_b);
 	else if (len < 6)
 		algo_5(&stack_a, &stack_b);
+	else
+		algo_5(&stack_a, &stack_b);
+	// display_lst(stack_a);
 	ft_lstclear(&stack_a, &free);
 	return (0);
 }
