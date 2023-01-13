@@ -6,12 +6,13 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:02:14 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/20 19:48:45 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/13 12:21:14 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils.h"
+#include <stdio.h>
 
 int	is_valid_instruction(char *instruction)
 {
@@ -35,6 +36,7 @@ int	get_instructions(t_list **instructions)
 {
 	char	*line;
 	char	*instruction;
+	t_list	*node;
 
 	while (1)
 	{
@@ -42,30 +44,28 @@ int	get_instructions(t_list **instructions)
 		if (line == NULL)
 			break ;
 		instruction = ft_strtrim_end(line, "\n");
-		if (is_valid_instruction(instruction))
-			ft_lstadd_back(&*instructions, ft_lstnew(instruction));
+		node = ft_lstnew(instruction);
+		if (is_valid_instruction(instruction) && node != NULL)
+			ft_lstadd_back(&*instructions, node);
 		else
 			return (
-				free(line),
-				free(instruction),
-				ft_lstclear(&*instructions, &free), -1
+				free(line), free(instruction),
+				free(node), ft_lstclear(&*instructions, &free),
+				-1
 			);
 		free(line);
 	}
 	return (0);
 }
 
-void	run_instructions(
-	t_list **stack_a,
-	t_list **stack_b,
-	t_list **instruction
-) {
+void	run_instructions(t_stack **a, t_stack **b, t_list **instruction)
+{
 	t_list	*tmp;
 
 	while (*instruction)
 	{
 		tmp = (*instruction)->next;
-		exec_instruction(&*stack_a, &*stack_b, (*instruction)->content);
+		exec_instruction(&*a, &*b, (*instruction)->content);
 		free((*instruction)->content);
 		free(*instruction);
 		*instruction = tmp;

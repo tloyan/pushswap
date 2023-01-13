@@ -6,22 +6,18 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 19:07:30 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/19 19:27:35 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:47:00 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "utils.h"
 
-void	ft_rotate(t_list **lst)
+void	ft_rotate(t_stack **stack)
 {
-	t_list	*tmp;
-	t_list	*last;
-
-	tmp = (*lst)->next;
-	if (*lst == NULL || (*lst)->next == NULL)
+	if ((*stack)->size < 2)
 		return ;
-	last = ft_lstlast(*lst);
-	(*lst)->next = NULL;
-	last->next = *lst;
-	*lst = tmp;
+	(*stack)->curr = (*stack)->head->next;
+	(*stack)->tail = (*stack)->head;
+	(*stack)->head = (*stack)->curr;
 }

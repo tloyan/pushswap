@@ -6,7 +6,7 @@
 #    By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:38:39 by thloyan           #+#    #+#              #
-#    Updated: 2022/12/21 20:01:08 by thloyan          ###   ########.fr        #
+#    Updated: 2023/01/13 12:25:10 by thloyan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,15 +34,14 @@ OBJDIR = objs
 
 OBJDIR_UTILS = $(OBJDIR)/utils
 PATH_UTILS = srcs/utils
-SRCS_UTILS = 	process_args.c process_exit.c display_lst.c ft_swap.c ft_push.c \
-				ft_rotate.c ft_rrotate.c exec_instruction.c
+SRCS_UTILS = 	process_args.c process_args_val.c process_exit.c stack.c ft_swap.c \
+				ft_push.c ft_rotate.c ft_rrotate.c exec_instruction.c
 OBJS_UTILS = $(addprefix $(OBJDIR_UTILS)/, $(SRCS_UTILS:.c=.o))
 
 OBJDIR_PUSHSWAP = $(OBJDIR)/push_swap
 PATH_PUSHSWAP = srcs/push_swap
 SRCS_PUSHSWAP = main.c algo_low.c instructions.c
 OBJS_PUSHSWAP = $(addprefix $(OBJDIR_PUSHSWAP)/, $(SRCS_PUSHSWAP:.c=.o))
-
 
 OBJDIR_CHECKER = $(OBJDIR)/checker
 PATH_CHECKER = srcs/checker

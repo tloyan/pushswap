@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:05:16 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/21 14:07:16 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/13 12:20:23 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 #include "utils.h"
 #include <limits.h>
 
-void	check_result(t_list **stack_a, t_list **stack_b)
+void	check_result(t_stack **a, t_stack **b)
 {
 	int		max;
 	int		valid;
-	int		stack_b_len;
-	t_list	*lst;
+	int		i;
 
 	max = INT_MIN;
 	valid = 1;
-	stack_b_len = ft_lstsize(*stack_b);
-	if (stack_b_len != 0)
+	if ((*b)->size != 0)
 		valid = 0;
-	lst = *stack_a;
-	while (lst && valid)
+	(*a)->curr = (*a)->head;
+	i = 0;
+	while (i < (*a)->size)
 	{
-		if (((t_data *)lst->content)->number < max)
+		if ((*a)->curr->position < max)
 			valid = 0;
-		max = ((t_data *)lst->content)->number;
-		lst = lst->next;
+		max = (*a)->curr->position;
+		(*a)->curr = (*a)->curr->next;
+		i = i + 1;
 	}
-	ft_lstclear(&*stack_a, &free);
-	ft_lstclear(&*stack_b, &free);
+	clear_stack(*a);
+	clear_stack(*b);
 	if (valid)
 		ft_putstr_fd("OK\n", 1);
 	else

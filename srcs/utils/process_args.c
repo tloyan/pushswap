@@ -6,78 +6,77 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:53:30 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/21 14:26:04 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/12 12:03:39 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "push_swap.h"
-#include "limits.h"
+#include "utils.h"
 
-static int	str_is_valid_number(char *str)
+void	ft_sort_int_tab(int	*tab, int size)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 1;
+	while (i < size)
+	{
+		tmp = tab[i];
+		j = i - 1;
+		while (j >= 0 && tab[j] > tmp)
+		{
+			tab[j + 1] = tab[j];
+			j--;
+		}
+		tab[j + 1] = tmp;
+		i++;
+	}
+}
+
+int	get_node_position(int number, int *array, int size)
 {
 	int	i;
 
 	i = 0;
-	if (str[i] != 0 && (str[i] == '-' || str[i] == '+'))
-		i = i + 1;
-	if (str[i] == 0)
-		return (0);
-	while (str[i] != 0)
+	while (i < size)
 	{
-		if (ft_isdigit(str[i]) == 0)
-			return (0);
+		if (number == array[i])
+			return (i);
 		i = i + 1;
 	}
-	return (1);
+	return (i);
 }
 
-static int	nb_already_exist(int number, t_list *lst)
+void	set_stack_position(t_stack **stack, int	*array)
 {
-	while (lst)
-	{
-		if (((t_data *)lst->content)->number == number)
-			return (1);
-		lst = lst->next;
-	}
-	return (0);
-}
+	int		i;
 
-static t_list	*create_new_elem(char *str, t_list *lst)
-{
-	t_data		*data;
-
-	data = malloc(sizeof(*data));
-	if (data == NULL || !str_is_valid_number(str))
-		return (free(data), NULL);
-	data->number = ft_atol(str);
-	if (data->number > INT_MAX || data->number < INT_MIN)
-		return (free(data), NULL);
-	if (nb_already_exist(data->number, lst))
-		return (free(data), NULL);
-	return (ft_lstnew((void *)data));
-}
-
-t_list	*process_args(int argc, char **argv)
-{
-	t_list		*lst;
-	t_list		*new_element;
-	t_list		*last_element;
-	int			i;
-
-	lst = NULL;
-	last_element = NULL;
 	i = 0;
-	while (++i < (argc))
+	while (i < (*stack)->size)
 	{
-		new_element = create_new_elem(argv[i], lst);
-		if (new_element == NULL)
-			return (process_exit(lst), NULL);
-		if (lst == NULL)
-			lst = new_element;
-		if (last_element != NULL)
-			last_element->next = new_element;
-		last_element = new_element;
+		(*stack)->curr->position
+			= get_node_position((*stack)->curr->value, array, (*stack)->size);
+		(*stack)->curr = (*stack)->curr->next;
+		i = i + 1;
 	}
-	return (lst);
+	(*stack)->curr = (*stack)->head;
+}
+
+t_stack	*process_args(int argc, char **argv)
+{
+	int		*array;
+	t_stack	*stack;
+
+	stack = init_stack();
+	if (stack == NULL)
+		return (NULL);
+	array = args_to_arr(argc, argv);
+	if (array == NULL)
+		process_exit(stack, NULL);
+	set_stack_value(&stack, array, argc);
+	ft_sort_int_tab(array, argc - 1);
+	set_stack_position(&stack, array);
+	free(array);
+	return (stack);
 }
