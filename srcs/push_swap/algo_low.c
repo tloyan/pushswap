@@ -6,100 +6,58 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:29:05 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/22 14:54:50 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/16 16:23:19 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void	set_min_max(t_list *stack, int *min, int *max)
+void	set_min_max(t_stack *stack, int *min, int *max)
 {
-	while (stack)
+	int	i;
+
+	i = 0;
+	stack->curr = stack->head;
+	while (i++ < stack->size)
 	{
-		if (((t_data *)stack->content)->number < *min)
-			*min = ((t_data *)stack->content)->number;
-		if (((t_data *)stack->content)->number > *max)
-			*max = ((t_data *)stack->content)->number;
-		stack = stack->next;
+		if (stack->curr->value < *min)
+			*min = stack->curr->value;
+		if (stack->curr->value > *max)
+			*max = stack->curr->value;
+		stack->curr = stack->curr->next;
 	}
 }
 
-void	algo_3(t_list **stack_a, t_list **stack_b)
+void	algo_3(t_stack **a, t_stack **b, t_list **instructions)
 {
-	t_list	*last;
 	int		min;
 	int		max;
 
 	min = INT_MAX;
 	max = INT_MIN;
-	set_min_max(*stack_a, &min, &max);
-	if (((t_data *)(*stack_a)->content)->number == max)
-		call_instruction(&*stack_a, &*stack_b, "ra");
-	last = ft_lstlast(*stack_a);
-	if (((t_data *)last->content)->number != max)
-		call_instruction(&*stack_a, &*stack_b, "rra");
-	if (((t_data *)(*stack_a)->content)->number != min)
-		call_instruction(&*stack_a, &*stack_b, "sa");
+	set_min_max(*a, &min, &max);
+	if ((*a)->head->value == max)
+		call_instruction(&*a, &*b, &*instructions, "ra");
+	if ((*a)->tail->value != max)
+		call_instruction(&*a, &*b, &*instructions, "rra");
+	if ((*a)->head->value != min)
+		call_instruction(&*a, &*b, &*instructions, "sa");
 }
 
-int	get_rcost_move(t_list *stack_a, int nb, int *asc)
+void	algo_5(t_stack **a, t_stack **b, t_list **instructions)
 {
-	int	len;
-	int	rcost;
+	int	next_pos;
 
-	len = ft_lstsize(stack_a);
-	rcost = 0;
-	while (stack_a)
+	while ((*a)->size > 3)
+		call_instruction(&*a, &*b, &*instructions, "pb");
+	algo_3(&*a, &*b, &*instructions);
+	while ((*b)->size > 0)
 	{
-		if (nb > ((t_data *)stack_a->content)->number)
-			rcost = rcost + 1;
-		stack_a = stack_a->next;
+		next_pos = get_next_position(*a, (*b)->head);
+		if (next_pos > -1)
+			place_node_to_top_by_pos(&*a, &*instructions, next_pos, "a");
+		call_instruction(&*a, &*b, &*instructions, "pa");
 	}
-	if (rcost <= (len / 2))
-		return (*asc = 1, rcost);
-	return (*asc = 0, (len - rcost));
-}
-
-void	special_move(t_list **stack_a, t_list **stack_b)
-{
-	int			i;
-	int			rcost;
-	const char	*moves[3] = {"rra", "ra"};
-	int			move_i;
-
-	rcost = get_rcost_move(*stack_a,
-			((t_data *)(*stack_b)->content)->number, &move_i);
-	i = -1;
-	while (++i < rcost)
-		call_instruction(&*stack_a, &*stack_b, (char *)moves[move_i]);
-	call_instruction(&*stack_a, &*stack_b, "pa");
-	while (i-- > -1 + move_i)
-		call_instruction(&*stack_a, &*stack_b, (char *)moves[(move_i + 1) % 2]);
-}
-
-void	algo_5(t_list **stack_a, t_list **stack_b)
-{
-	int		len;
-	int		i;
-
-	len = ft_lstsize(*stack_a);
-	i = -1;
-	while (len - ++i > 3)
-		call_instruction(&*stack_a, &*stack_b, "pb");
-	algo_3(&*stack_a, &*stack_b);
-	while (--i > -1)
-	{
-		if (((t_data *)(*stack_b)->content)->number
-			< ((t_data *)(*stack_a)->content)->number)
-			call_instruction(&*stack_a, &*stack_b, "pa");
-		else if (((t_data *)(*stack_b)->content)->number
-			> ((t_data *)(ft_lstlast(*stack_a))->content)->number)
-		{
-			call_instruction(&*stack_a, &*stack_b, "pa");
-			call_instruction(&*stack_a, &*stack_b, "ra");
-		}
-		else
-			special_move(&*stack_a, &*stack_b);
-	}
+	place_node_to_top_by_pos(&*a, &*instructions, 0, "a");
 }

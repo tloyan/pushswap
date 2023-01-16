@@ -6,30 +6,63 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:20:57 by thloyan           #+#    #+#             */
-/*   Updated: 2022/12/22 14:03:49 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/16 15:49:51 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
+#include <stdio.h>
+
+void	display_stack(t_stack	*stack)
+{
+	int	i;
+
+	i = 0;
+	stack->curr = stack->head;
+	while (i++ < stack->size)
+	{
+		printf("value: %d\n", stack->curr->value);
+		printf("position: %d\n\n", stack->curr->position);
+		stack->curr = stack->curr->next;
+	}
+}
+
+void	display_stack_from_end(t_stack	*stack)
+{
+	int	i;
+
+	i = 0;
+	stack->curr = stack->tail;
+	while (i++ < stack->size)
+	{
+		printf("value: %d\n", stack->curr->value);
+		printf("position: %d\n\n", stack->curr->position);
+		stack->curr = stack->curr->prev;
+	}
+}
 
 int	main(int argc, char **argv)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
-	int		len;
+	t_stack	*a;
+	t_stack	*b;
+	t_list	*instructions;
 
-	stack_a = process_args(argc, argv);
-	stack_b = NULL;
-	// display_lst(stack_a);
-	len = ft_lstsize(stack_a);
-	if (len < 4)
-		algo_3(&stack_a, &stack_b);
-	else if (len < 6)
-		algo_5(&stack_a, &stack_b);
-	else
-		algo_5(&stack_a, &stack_b);
-	// display_lst(stack_a);
-	ft_lstclear(&stack_a, &free);
+	a = process_args(argc, argv);
+	b = init_stack();
+	instructions = NULL;
+	// display_stack(a);
+	// display_stack_from_end(a);
+	if (a->size < 4)
+		algo_3(&a, &b, &instructions);
+	else if (a->size < 6)
+		algo_5(&a, &b, &instructions);
+	// else
+	// 	algo_5(&a, &b);
+	display_instructions(instructions);
+	// display_stack(a);
+	// display_stack_from_end(a);
+	clear_stack(a);
+	clear_stack(b);
 	return (0);
 }

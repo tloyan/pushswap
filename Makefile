@@ -6,7 +6,7 @@
 #    By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:38:39 by thloyan           #+#    #+#              #
-#    Updated: 2023/01/13 12:25:10 by thloyan          ###   ########.fr        #
+#    Updated: 2023/01/16 16:24:10 by thloyan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ OBJS_UTILS = $(addprefix $(OBJDIR_UTILS)/, $(SRCS_UTILS:.c=.o))
 
 OBJDIR_PUSHSWAP = $(OBJDIR)/push_swap
 PATH_PUSHSWAP = srcs/push_swap
-SRCS_PUSHSWAP = main.c algo_low.c instructions.c
+SRCS_PUSHSWAP = main.c algo_low.c algo_utils.c instructions.c
 OBJS_PUSHSWAP = $(addprefix $(OBJDIR_PUSHSWAP)/, $(SRCS_PUSHSWAP:.c=.o))
 
 OBJDIR_CHECKER = $(OBJDIR)/checker
