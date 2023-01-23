@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:18:23 by thloyan           #+#    #+#             */
-/*   Updated: 2023/01/16 16:37:14 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/23 18:15:18 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,25 @@ void	place_node_to_top_by_pos(
 		tail_curr = tail_curr->prev;
 		i = i + 1;
 	}
+}
+
+int	get_direction_by_pos(t_stack *stack, int position)
+{
+	int		i;
+	t_node	*tail_curr;
+
+	i = 0;
+	stack->curr = stack->head;
+	tail_curr = stack->tail;
+	while (i < (stack->size))
+	{
+		if (stack->curr->position == position)
+			return (1);
+		else if (tail_curr->position == position)
+			return (0);
+		stack->curr = stack->curr->next;
+		tail_curr = tail_curr->prev;
+		i = i + 1;
+	}
+	return (1);
 }

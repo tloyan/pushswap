@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:20:57 by thloyan           #+#    #+#             */
-/*   Updated: 2023/01/16 15:49:51 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/23 15:12:07 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	main(int argc, char **argv)
 		algo_3(&a, &b, &instructions);
 	else if (a->size < 6)
 		algo_5(&a, &b, &instructions);
+	else
+		algo(&a, &b, &instructions);
 	// else
 	// 	algo_5(&a, &b);
 	display_instructions(instructions);
