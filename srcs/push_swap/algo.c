@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 15:10:27 by thloyan           #+#    #+#             */
-/*   Updated: 2023/01/23 18:15:40 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/26 14:08:59 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,18 @@ int	get_r_cost_by_p(t_stack *stack, int position)
 {
 	int		i;
 	t_node	*tail_curr;
+	t_node	*curr;
 
 	i = 0;
-	stack->curr = stack->head;
+	curr = stack->head;
 	tail_curr = stack->tail;
 	while (i < (stack->size))
 	{
-		if (stack->curr->position == position)
+		if (curr->position == position)
 			return (i);
 		else if (tail_curr->position == position)
 			return (1 + i);
-		stack->curr = stack->curr->next;
+		curr = curr->next;
 		tail_curr = tail_curr->prev;
 		i = i + 1;
 	}
@@ -53,9 +54,9 @@ int	get_r_cost_by_p(t_stack *stack, int position)
 
 int	is_same_direction(t_stack *stack, int pos, int i, int size)
 {
-	if (i <= ((size / 2) + 1) && get_direction_by_pos(stack, pos) == 1)
+	if (i < ((size / 2)) && get_direction_by_pos(stack, pos) == 1)
 		return (1);
-	if (i > ((size / 2) + 1) && get_direction_by_pos(stack, pos) == 0)
+	if (i >= ((size / 2)) && get_direction_by_pos(stack, pos) == 0)
 		return (1);
 	return (0);
 }
@@ -77,7 +78,7 @@ int	get_lowest_cost_node(t_stack **a, t_stack **b)
 		curr_cost = get_r_cost_by_p(*a, next_pos);
 		if (is_same_direction(*a, next_pos, i, (*b)->size) == 0)
 			curr_cost = curr_cost + get_r_cost_by_p(*b, (*b)->curr->position);
-		if (get_r_cost_by_p(*b, (*b)->curr->position) > curr_cost)
+		else if (get_r_cost_by_p(*b, (*b)->curr->position) > curr_cost)
 			curr_cost = get_r_cost_by_p(*b, (*b)->curr->position);
 		if (curr_cost < lowest_cost)
 		{

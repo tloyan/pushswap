@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:39:54 by thloyan           #+#    #+#             */
-/*   Updated: 2023/01/16 15:43:28 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/26 14:13:19 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,5 @@ void	ft_swap(t_stack **stack)
 		second->next = tmp;
 		tmp->prev = second;
 		(*stack)->head = first;
-		// (*stack)->curr->prev = (*stack)->curr->next;
-		// (*stack)->curr->next->next->prev = (*stack)->curr;
-		// (*stack)->curr->next = (*stack)->curr->next->next;
-		// (*stack)->curr->prev->next = (*stack)->curr;
-		// (*stack)->curr->prev->prev = (*stack)->tail;
-		// (*stack)->curr = (*stack)->curr->prev;
-		// (*stack)->head = (*stack)->curr;
 	}
 }
