@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:29:42 by thloyan           #+#    #+#             */
-/*   Updated: 2023/01/23 18:15:53 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/27 14:12:39 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	call_instruction_with_stack(
 void	display_instructions(t_list *instruction);
 char	*get_action(char *s, char *action, char *letter);
 int		get_next_position(t_stack *stack, t_node *node);
-int	get_direction_by_pos(t_stack *stack, int position);
+int		get_direction_by_pos(t_stack *stack, int position);
 void	place_node_to_top_by_pos(
 			t_stack **stack,
 			t_list **instructions,
@@ -41,5 +41,6 @@ void	place_node_to_top_by_pos(
 			char *letter
 			);
 void	opti(t_list **instructions);
+int		ft_lstdeln(t_list **lst, t_list **prev, int n);
 
 #endif

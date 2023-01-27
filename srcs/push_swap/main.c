@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:20:57 by thloyan           #+#    #+#             */
-/*   Updated: 2023/01/26 14:12:40 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/01/27 14:14:21 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	main(int argc, char **argv)
 	t_stack	*b;
 	t_list	*instructions;
 
+	if (argc == 1)
+		return (0);
 	a = process_args(argc, argv);
 	b = init_stack();
 	instructions = NULL;
@@ -57,6 +59,7 @@ int	main(int argc, char **argv)
 		algo_5(&a, &b, &instructions);
 	else
 		algo(&a, &b, &instructions);
+	opti(&instructions);
 	display_instructions(instructions);
 	clear_stack(a);
 	clear_stack(b);
