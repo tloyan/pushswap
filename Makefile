@@ -6,7 +6,7 @@
 #    By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:38:39 by thloyan           #+#    #+#              #
-#    Updated: 2023/05/23 16:21:55 by thloyan          ###   ########.fr        #
+#    Updated: 2023/05/23 16:37:18 by thloyan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,11 +76,12 @@ $(OBJDIR_PUSHSWAP)/%.o: $(PATH_PUSHSWAP)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@ -I${INLCUDES} -I$(INLCUDES_LIBFT)
 
 clean:
-	rm -f $(OBJS_PUSHSWAP)
-	rm -rf $(OBJDIR_PUSHSWAP)
+	make -C $(LIBFT_PATH) clean
+	rm -rf $(OBJDIR)
 
 fclean: clean
-	rm -f $(NAME)
+	make -C $(LIBFT_PATH) fclean
+	rm -f $(NAME) $(NAME_CHECKER) $(UTILS)
 
 re: fclean all
 
@@ -142,8 +143,6 @@ fclean_libft:
 
 re_libft:
 	make -C $(LIBFT_PATH) re
-
-bonus: $(NAME_CHECKER)
 
 .PHONY: all clean fclean re \
 		clean_checker fclean_checker re_checker \
