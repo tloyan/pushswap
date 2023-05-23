@@ -6,7 +6,7 @@
 #    By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:38:39 by thloyan           #+#    #+#              #
-#    Updated: 2023/01/27 14:13:01 by thloyan          ###   ########.fr        #
+#    Updated: 2023/05/23 16:21:55 by thloyan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -142,6 +142,8 @@ fclean_libft:
 
 re_libft:
 	make -C $(LIBFT_PATH) re
+
+bonus: $(NAME_CHECKER)
 
 .PHONY: all clean fclean re \
 		clean_checker fclean_checker re_checker \
