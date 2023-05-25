@@ -6,13 +6,12 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:02:14 by thloyan           #+#    #+#             */
-/*   Updated: 2023/01/13 12:21:14 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/05/25 12:26:51 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils.h"
-#include <stdio.h>
 
 int	is_valid_instruction(char *instruction)
 {

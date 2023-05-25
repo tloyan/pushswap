@@ -6,41 +6,12 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:20:57 by thloyan           #+#    #+#             */
-/*   Updated: 2023/01/27 14:14:21 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/05/25 12:42:01 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
-#include <stdio.h>
-
-void	display_stack(t_stack	*stack)
-{
-	int	i;
-
-	i = 0;
-	stack->curr = stack->head;
-	while (i++ < stack->size)
-	{
-		printf("value: %d\n", stack->curr->value);
-		printf("position: %d\n\n", stack->curr->position);
-		stack->curr = stack->curr->next;
-	}
-}
-
-void	display_stack_from_end(t_stack	*stack)
-{
-	int	i;
-
-	i = 0;
-	stack->curr = stack->tail;
-	while (i++ < stack->size)
-	{
-		printf("value: %d\n", stack->curr->value);
-		printf("position: %d\n\n", stack->curr->position);
-		stack->curr = stack->curr->prev;
-	}
-}
 
 int	main(int argc, char **argv)
 {

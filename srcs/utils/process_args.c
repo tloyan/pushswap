@@ -6,7 +6,7 @@
 /*   By: thloyan <thloyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:53:30 by thloyan           #+#    #+#             */
-/*   Updated: 2023/01/12 12:03:39 by thloyan          ###   ########.fr       */
+/*   Updated: 2023/05/25 13:08:09 by thloyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,20 @@ void	set_stack_position(t_stack **stack, int	*array)
 	(*stack)->curr = (*stack)->head;
 }
 
+int	is_sorted(int *arr, int argc)
+{
+	int	i;
+
+	i = 0;
+	while (i < argc - 2)
+	{
+		if (arr[i] > arr[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 t_stack	*process_args(int argc, char **argv)
 {
 	int		*array;
@@ -72,6 +86,8 @@ t_stack	*process_args(int argc, char **argv)
 	if (stack == NULL)
 		return (NULL);
 	array = args_to_arr(argc, argv);
+	if (array && is_sorted(array, argc))
+		return (clear_stack(stack), exit(-1), NULL);
 	if (array == NULL)
 		process_exit(stack, NULL);
 	set_stack_value(&stack, array, argc);
